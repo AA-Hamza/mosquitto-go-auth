@@ -114,12 +114,12 @@ func NewMongo(authOpts map[string]string, logLevel log.Level, hasher hashing.Has
 		m.enableSRV = true
 	}
 
-	protocol := "mongodb"
+  addr := ""
 	if m.enableSRV {
-		protocol += "+srv"
-	}
-
-	addr := fmt.Sprintf("%s://%s:%s", protocol, m.Host, m.Port)
+    addr = fmt.Sprintf("mongodb+srv://%s", m.Host)
+	} else {
+    addr = fmt.Sprintf("mongodb://%s:%s", m.Host, m.Port)
+  }
 
 	to := 60 * time.Second
 
