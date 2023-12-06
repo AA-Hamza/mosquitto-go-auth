@@ -39,6 +39,9 @@ service:
 	@echo "Generating gRPC code from .proto files"
 	@go generate grpc/grpc.go
 
+pw:
+	go build pw-gen/pw.go
+
 clean:
 	rm -f go-auth.h
 	rm -f go-auth.so
